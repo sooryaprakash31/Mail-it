@@ -8,15 +8,18 @@ from utils.templates import get_template,render_context
 
 host = "smtp.gmail.com"
 port = 587
+#email and password of the from account
 username=""
 password=""
 from_email=username
 to_list=[]
 
+#returns platform independent file path
 file_item_path = os.path.join(os.path.dirname(__file__),"data.csv")
 
 class MailManager():
 
+     #renders the message with user data in csv file
      def render_message(self,user_data):
           file_= 'templates/email_message.txt'
           file_html='templates/email_message.html'
@@ -29,6 +32,7 @@ class MailManager():
                return (plain_,html_)
           return (None,None)
      
+     #Actual mailing code
      def message_user(self,user_id=None,email=None,subject=None):
           user=self.get_user_data(user_id=user_id,email=email)
           if user:
@@ -36,6 +40,7 @@ class MailManager():
                user_email=user.get("email")
                to_list.append(user_email)          
                try:
+                    #setting up
                     email_conn = smtplib.SMTP(host,port)
                     email_conn.ehlo()
                     email_conn.starttls()
@@ -45,6 +50,8 @@ class MailManager():
                     the_message["Subject"]=subject
                     the_message["From"]=from_email
                     the_message["To"]=user_email
+
+                    #Creating the Mail Message
                     part_1=MIMEText(plain_,'plain')
                     part_2=MIMEText(html_,'html')
                     the_message.attach(part_1)
@@ -56,6 +63,7 @@ class MailManager():
                
           return None
 
+     #returns a particular user data
      def get_user_data(self,user_id=None,email=None):
           filename=file_item_path
           with open(filename,"r") as csvfile:
