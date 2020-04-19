@@ -1,0 +1,74 @@
+import csv
+import os
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from utils.templates import get_template,render_context
+
+
+host = "smtp.gmail.com"
+port = 587
+username=""
+password=""
+from_email=username
+to_list=[]
+
+file_item_path = os.path.join(os.path.dirname(__file__),"data.csv")
+
+class MailManager():
+
+     def render_message(self,user_data):
+          file_= 'templates/email_message.txt'
+          file_html='templates/email_message.html'
+          template=get_template(file_)
+          template_html=get_template(file_html)
+          if isinstance(user_data,dict):
+               context=user_data
+               plain_=render_context(template,context)
+               html_=render_context(template_html,context)
+               return (plain_,html_)
+          return (None,None)
+     
+     def message_user(self,user_id=None,email=None,subject=None):
+          user=self.get_user_data(user_id=user_id,email=email)
+          if user:
+               plain_,html_=self.render_message(user)
+               user_email=user.get("email")
+               to_list.append(user_email)          
+               try:
+                    email_conn = smtplib.SMTP(host,port)
+                    email_conn.ehlo()
+                    email_conn.starttls()
+                    email_conn.ehlo()
+                    email_conn.login(username,password) 
+                    the_message=MIMEMultipart("alternative")
+                    the_message["Subject"]=subject
+                    the_message["From"]=from_email
+                    the_message["To"]=user_email
+                    part_1=MIMEText(plain_,'plain')
+                    part_2=MIMEText(html_,'html')
+                    the_message.attach(part_1)
+                    the_message.attach(part_2)
+                    email_conn.sendmail(from_email,to_list,str(the_message))
+                    email_conn.quit()
+               except smtplib.SMTPException:
+                    print("Error sending mail")
+               
+          return None
+
+     def get_user_data(self,user_id=None,email=None):
+          filename=file_item_path
+          with open(filename,"r") as csvfile:
+               reader=csv.DictReader(csvfile)
+               for row in reader:
+                    if user_id is not None:
+                         if (int(user_id)==int(row.get("id"))):
+                              return row
+                         else:
+                              print("User id {user_id} not found".format(user_id=user_id))
+                    if email is not None:
+                         if email == row.get("email"):
+                              return row
+                         else:
+                              print("Email id {user_id} not found".format(email=email))
+          return None
