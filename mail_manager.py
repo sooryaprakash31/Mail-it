@@ -16,6 +16,7 @@ to_list=[]
 
 #returns platform independent file path
 file_item_path = os.path.join(os.path.dirname(__file__),"data.csv")
+filename=file_item_path
 
 class MailManager():
 
@@ -71,12 +72,28 @@ class MailManager():
                for row in reader:
                     if user_id is not None:
                          if (int(user_id)==int(row.get("id"))):
-                              return row
+                              return list(row.items())
                          else:
                               print("User id {user_id} not found".format(user_id=user_id))
                     if email is not None:
                          if email == row.get("email"):
-                              return row
+                              return list(row.items())
                          else:
                               print("Email id {user_id} not found".format(email=email))
           return None
+     
+     def message_all_users(self,subject=None):
+          with open(filename,"r") as csvfile:
+               reader=csv.DictReader(csvfile)
+               for row in reader:
+                    user_id=row['id']
+                    self.message_user(user_id=user_id,subject=subject)
+
+     def get_all_users(self):
+          users_List=[]
+          with open(filename,"r") as csvfile:
+               reader=csv.DictReader(csvfile)
+               for row in reader:
+                    users_List.append(list(row.items()))
+               
+          return users_List
