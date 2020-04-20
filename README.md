@@ -19,9 +19,8 @@ A module written using python to send a mail template to 'n' number of email add
 </tr>
 </table>
 
-4. Include the from email address and password in MailManager.py <br />
+4. Include the from email address and password in [mail_manager.py](mail_manager.py) <br />
 
-[MailManager.py](mail_manager.py)
 
 ### Edit Template
 
@@ -31,7 +30,7 @@ Insert your mail message by editing the files in templates folder <br />
 <br />
 email_message.txt<br />
 ```
-Hey {name}! your monthly bill is {amount} <br />
+Hey {name}! your monthly bill is {amount}
 ```
 email_message.html<br />
 ```
@@ -46,11 +45,11 @@ email_message.html<br />
 > The variables name and amount get rendered with user's data from the data.csv file <br />
 
 
-### Execution <br />
+### Execute <br />
 
 Run the module using command line arguments <br />
 
-To view a particular user <br />
+##### To view a particular user <br />
 ```
 python Mail-it View -id <idno>
 ```
@@ -58,7 +57,7 @@ or
 ```
 python Mail-it View -email <email>
 ```
-To message a particular user <br />
+##### To message a particular user <br />
 ```
 python Mail-it Message -id <idno>
 ```
@@ -66,11 +65,12 @@ or
 ```
 python Mail-it Message -email <email>
 ```
-To view all users <br />
+##### To view all users <br />
 ```
 python Mail-it ViewAll
 ```
-To message all users <br />
+##### To message all users <br />
 ```
 python Mail-it MessageAll
 ```
+**Enter the subject and the job is done!**
