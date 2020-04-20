@@ -91,6 +91,7 @@ class MailManager():
                     print("Email id {user_id} not found".format(email=email))
           return None
      
+     #sends mail for every row in csv file
      def message_all_users(self,subject=None):
           with open(filename,"r") as csvfile:
                reader=csv.DictReader(csvfile)
@@ -98,6 +99,7 @@ class MailManager():
                     user_id=row['id']
                     self.message_user(user_id=user_id,subject=subject)
 
+     #returns the list of all users
      def get_all_users(self):
           users_List=[]
           with open(filename,"r") as csvfile:
