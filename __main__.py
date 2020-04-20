@@ -11,7 +11,7 @@ parser.add_argument('-email','--email',type=str)
 args=parser.parse_args()
 
 if args.type=="View":
-     print(MailManager().get_user_data(user_id=args.user_id,email=args.email))
+     print(list(MailManager().get_user_data(user_id=args.user_id,email=args.email).items()))
 
 elif args.type=="Message":
      s=input("Enter Subject")

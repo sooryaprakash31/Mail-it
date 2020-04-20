@@ -72,12 +72,12 @@ class MailManager():
                for row in reader:
                     if user_id is not None:
                          if (int(user_id)==int(row.get("id"))):
-                              return list(row.items())
+                              return row
                          else:
                               print("User id {user_id} not found".format(user_id=user_id))
                     if email is not None:
                          if email == row.get("email"):
-                              return list(row.items())
+                              return row
                          else:
                               print("Email id {user_id} not found".format(email=email))
           return None
