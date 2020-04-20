@@ -1,10 +1,10 @@
-# Mail-it
+<h1 align=center>Mail-it</h1>
+
 A module written using python to send a mail template to 'n' number of email addresses. 
 
-### Set Up
+## Set Up
 
 1. Clone this repository <br />
-
 2. Populate the [data.csv](data.csv) file with the users data <br /> 
    - [data.csv](data.csv) must have 'id' and 'email' columns <br />
 
@@ -22,17 +22,17 @@ A module written using python to send a mail template to 'n' number of email add
 4. Include the from email address and password in [mail_manager.py](mail_manager.py) <br />
 
 
-### Edit Template
+## Edit Template
 
 Insert your mail message by editing the files in [templates](templates/) folder <br />
 
 **Example:** <br />
 <br />
-email_message.txt<br />
+[email_message.txt](templates/email_message.txt)<br />
 ```
 Hey {name}! your monthly bill is {amount}
 ```
-email_message.html<br />
+[email_message.html](templates/email_message.html)<br />
 ```
 <html>
      <head></head>
@@ -45,7 +45,7 @@ email_message.html<br />
 > The variables name and amount get rendered with user's data from the data.csv file <br />
 
 
-### Execute <br />
+## Execute <br />
 
 Run the module using command line arguments <br />
 
@@ -73,4 +73,4 @@ python Mail-it ViewAll
 ```
 python Mail-it MessageAll
 ```
-**Enter the subject and the job is done!**
+**Enter the subject and _the job is done!_**
