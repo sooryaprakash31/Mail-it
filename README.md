@@ -21,7 +21,7 @@ A module written using python to send a mail template to 'n' number of email add
 
 4. Include the from email address and password in MailManager.py <br />
 
-[MailManager.py](MailManager.py)
+[MailManager.py](mail_manager.py)
 
 ### Edit Template
 
