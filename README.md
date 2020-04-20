@@ -5,8 +5,8 @@ A module written using python to send a mail template to 'n' number of email add
 
 1. Clone this repository <br />
 
-2. Populate the data.csv file with the users data <br /> 
-   - data.csv must have id and email columns <br />
+2. Populate the [data.csv](data.csv) file with the users data <br /> 
+   - [data.csv](data.csv) must have 'id' and 'email' columns <br />
 
 <table>
 <tr>     
@@ -24,7 +24,7 @@ A module written using python to send a mail template to 'n' number of email add
 
 ### Edit Template
 
-Insert your mail message by editing the files in templates folder <br />
+Insert your mail message by editing the files in [templates](templates/) folder <br />
 
 **Example:** <br />
 <br />
