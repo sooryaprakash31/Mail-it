@@ -5,15 +5,23 @@ A module written using python to send a mail template to 'n' number of email add
 
 1. Clone this repository <br />
 
-2. Populate a csv file the users data and rename it to data.csv <br />
+2. Populate the data.csv file with the users data <br /> 
+   - data.csv must have id and email columns <br />
 
-3. data.csv must have id and email columns <br />
 <table>
-<tr>
+<tr>     
 <th>id</th>
 <th>email</th>
 </tr>
+<tr>     
+<td>1</td>
+<td>xyz@abc.com</td>
+</tr>
 </table>
+
+4. Include the from email address and password in MailManager.py <br />
+
+[MailManager.py](MailManager.py)
 
 ### Edit Template
 
@@ -37,8 +45,6 @@ email_message.html<br />
 ```
 > The variables name and amount get rendered with user's data from the data.csv file <br />
 
-
-Include the from email address and password in MailManager.py <br />
 
 ### Execution <br />
 
