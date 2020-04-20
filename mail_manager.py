@@ -59,6 +59,7 @@ class MailManager():
                     the_message.attach(part_2)
                     email_conn.sendmail(from_email,to_list,str(the_message))
                     email_conn.quit()
+                    print("Sent! {}".format(user_email))
                except smtplib.SMTPException:
                     print("Error sending mail")
                
@@ -67,6 +68,8 @@ class MailManager():
      #returns a particular user data
      def get_user_data(self,user_id=None,email=None):
           filename=file_item_path
+          temp_id=None
+          temp_email=None
           with open(filename,"r") as csvfile:
                reader=csv.DictReader(csvfile)
                for row in reader:
@@ -74,12 +77,18 @@ class MailManager():
                          if (int(user_id)==int(row.get("id"))):
                               return row
                          else:
-                              print("User id {user_id} not found".format(user_id=user_id))
+                              temp_id=user_id
+                              
                     if email is not None:
                          if email == row.get("email"):
                               return row
                          else:
-                              print("Email id {user_id} not found".format(email=email))
+                              temp_email=email
+
+               if temp_id is not None:
+                    print("User id {user_id} not found".format(user_id=user_id))
+               if temp_email is not None:
+                    print("Email id {user_id} not found".format(email=email))
           return None
      
      def message_all_users(self,subject=None):

@@ -6,6 +6,7 @@ def render_context(template_string,context):
 
 
 def get_template_path(path):
+     #os independent file path
      file_path=os.path.join(os.path.dirname(os.path.dirname(__file__)),path)
      if not os.path.isfile(file_path):
           raise Exception("File path invalid %s"%(file_path))
