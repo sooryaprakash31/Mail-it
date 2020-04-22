@@ -12,7 +12,6 @@ port = 587
 username=""
 password=""
 from_email=username
-to_list=[]
 
 #returns platform independent file path
 file_item_path = os.path.join(os.path.dirname(__file__),"data.csv")
@@ -39,6 +38,7 @@ class MailManager():
           if user:
                plain_,html_=self.render_message(user)
                user_email=user.get("email")
+               to_list=[]
                to_list.append(user_email)          
                try:
                     #setting up
