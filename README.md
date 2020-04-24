@@ -19,12 +19,12 @@ A module written using python to send a mail template to 'n' email addresses.
 </tr>
 </table>
 
-4. Include the from email address and password in [mail_manager.py](mail_manager.py) <br />
+3. Include the from email address and password in [mail_manager.py](mail_manager.py) <br />
 
 
 ## Edit Template
 
-Insert your mail message by editing the files in [templates](templates/) folder <br />
+Insert your mail message by editing one of the files in [templates](templates/) folder <br />
 
 **Example:** <br />
 <br />
@@ -85,4 +85,5 @@ python Mail-it MessageAll
 python Mail-it MessageRange
 ```
 >Reads subject, start and end id no of the range <br />
+
 **_The job is done!_**
