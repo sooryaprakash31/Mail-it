@@ -92,19 +92,12 @@ class MailManager():
           return None
      
      #sends mail for every row in csv file
-     def message_all_users(self,subject=None,start=None,end=None):
-          
+     def message_all_users(self,subject=None):
           with open(filename,"r") as csvfile:
                reader=csv.DictReader(csvfile)
-               if start == None:
-                    start=1
-               if end == None:
-                    end=len(list(reader))
                for row in reader:
-                    if int(row['id']) in list(range(start,end+1)):
-                         print(row['email'])
-                         #user_id=row['id']
-                         #self.message_user(user_id=user_id,subject=subject)
+                    user_id=row['id']
+                    self.message_user(user_id=user_id,subject=subject)
 
      #returns the list of all users
      def get_all_users(self):
@@ -114,4 +107,29 @@ class MailManager():
                for row in reader:
                     users_List.append(list(row.items()))
                
+          return users_List
+
+     def message_within_range(self,subject=None,start=None,end=None):
+          with open(filename,"r") as csvfile:
+               reader=csv.DictReader(csvfile)
+               if start == None:
+                    start=1
+               if end == None:
+                    end=len(list(reader))
+               for row in reader:
+                    if int(row['id']) in list(range(start,end+1)):
+                         user_id=row['id']
+                         self.message_user(user_id=user_id,subject=subject)
+                    elif int(row['id']) > end:
+                         break
+                    
+     def get_within_range(self,start=None,end=None):
+          users_List=[]
+          with open(filename,"r") as csvfile:
+               reader=csv.DictReader(csvfile)
+               for row in reader:
+                    if int(row['id']) in list(range(start,end+1)):
+                         users_List.append(list(row.items()))
+                    elif int(row['id']) > end:
+                         break
           return users_List

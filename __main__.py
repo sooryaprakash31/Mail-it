@@ -4,7 +4,7 @@ from utils.templates import get_template,render_context
 
 
 parser=ArgumentParser(prog="sendmail")
-parser.add_argument("type",type=str,choices=['View','Message','MessageAll','ViewAll'])
+parser.add_argument("type",type=str,choices=['View','Message','MessageAll','ViewAll','MessageRange','ViewRange'])
 parser.add_argument('-id','--user_id',type=int)
 parser.add_argument('-email','--email',type=str)
 
@@ -22,6 +22,13 @@ elif args.type=="ViewAll":
 
 elif args.type=="MessageAll":
      s=input("Enter Subject ")
-     start,end=map(int,input("Enter start and end id no").split())
-     print(list(range(start,end)))
-     print(MailManager().message_all_users(subject=s,start=start,end=end))
+     print(MailManager().message_all_users(subject=s))
+
+elif args.type=="ViewRange":
+     start,end=map(int,input("Enter start and end id no ").split())
+     print(MailManager().get_within_range(start=start,end=end))
+
+elif args.type=="MessageRange":
+     s=input("Enter Subject ")
+     start,end=map(int,input("Enter start and end id no ").split())
+     print(MailManager().message_within_range(subject=s,start=start,end=end))
