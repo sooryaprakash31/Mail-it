@@ -22,4 +22,6 @@ elif args.type=="ViewAll":
 
 elif args.type=="MessageAll":
      s=input("Enter Subject ")
-     print(MailManager().message_all_users(subject=s))
+     start,end=map(int,input("Enter start and end id no").split())
+     print(list(range(start,end)))
+     print(MailManager().message_all_users(subject=s,start=start,end=end))
