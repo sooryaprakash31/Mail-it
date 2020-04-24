@@ -57,6 +57,15 @@ or
 ```
 python Mail-it View -email <email>
 ```
+##### To view all users <br />
+```
+python Mail-it ViewAll
+```
+##### To view a range of users <br />
+```
+python Mail-it ViewRange
+```
+>Reads start and end id no of the range
 ##### To message a particular user <br />
 ```
 python Mail-it Message -id <idno>
@@ -65,12 +74,15 @@ or
 ```
 python Mail-it Message -email <email>
 ```
-##### To view all users <br />
-```
-python Mail-it ViewAll
-```
+>Reads Subject
 ##### To message all users <br />
 ```
 python Mail-it MessageAll
 ```
-**Enter the subject and _the job is done!_**
+>Reads subject
+##### To message a range of users <br />
+```
+python Mail-it MessageRange
+```
+>Reads subject, start and end id no of the range <br />
+**_The job is done!_**
