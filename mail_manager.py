@@ -6,18 +6,25 @@ from email.mime.text import MIMEText
 from utils.templates import get_template,render_context
 
 
+
 host = "smtp.gmail.com"
 port = 587
 #email and password of the from account
-username=""
-password=""
-from_email=username
+from_email=""
+from_password=""
 
 #returns platform independent file path
 file_item_path = os.path.join(os.path.dirname(__file__),"data.csv")
 filename=file_item_path
 
 class MailManager():
+     def __init__(self):
+          #get from email address and from password
+          global from_email,from_password
+
+          from_email = input("Enter Your Email Address: ")
+          from_password = input("Enter Your Password: ")
+     
 
      #renders the message with user data in csv file
      def render_message(self,user_data):
@@ -35,6 +42,7 @@ class MailManager():
      #Actual mailing code
      def message_user(self,user_id=None,email=None,subject=None):
           user=self.get_user_data(user_id=user_id,email=email)
+          global from_email,from_password
           if user:
                plain_,html_=self.render_message(user)
                user_email=user.get("email")
@@ -46,7 +54,7 @@ class MailManager():
                     email_conn.ehlo()
                     email_conn.starttls()
                     email_conn.ehlo()
-                    email_conn.login(username,password) 
+                    email_conn.login(from_email,from_password) 
                     the_message=MIMEMultipart("alternative")
                     the_message["Subject"]=subject
                     the_message["From"]=from_email
@@ -61,7 +69,7 @@ class MailManager():
                     email_conn.quit()
                     print("Sent! {}".format(user_email))
                except smtplib.SMTPException:
-                    print("Error sending mail")
+                    print(str(smtplib.SMTPException))
                
           return None
 
