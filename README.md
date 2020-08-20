@@ -1,6 +1,7 @@
 <h1 align=center>Mail-it</h1>
 
 A module written using python to send a mail template to 'n' email addresses. 
+Updated version is available [here](https://github.com/sooryaprakash31/Email-App)
 
 ## Set Up
 
